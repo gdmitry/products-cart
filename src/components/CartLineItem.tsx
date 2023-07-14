@@ -9,10 +9,13 @@ type PropsType = {
 
 function CartLineItem({ item, dispatch, REDUCER_ACTIONS }: PropsType) {
   const img: string = new URL(`../images/${item.sku}.jpg`, import.meta.url).href; // Load product thum
+  
   const lineTotal: number = (item.qty * item.price);
+
   const highestQty: number = 20 > item.qty ? 20 : item.qty; // limit highest qty
 
   const optionValues: number[] = [...Array(highestQty).keys()].map(i => i + 1); // fill qty dropdown
+
   const options: ReactElement[] = optionValues.map(val => {
     return <option key={`opt${val}`} value={val}>{val}</option>
   });
@@ -29,6 +32,7 @@ function CartLineItem({ item, dispatch, REDUCER_ACTIONS }: PropsType) {
     payload: item,
   })
   console.log(img)
+  
   const content = (
     <li className="cart__item">
       <img src={img} alt={item.name} className="cart__img" />
