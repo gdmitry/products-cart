@@ -16,12 +16,12 @@ const REDUCER_ACTION_TYPE = {
   REMOVE: 'REMOVE',
   QUANTITY: 'QUANTITY',
   SUBMIT: 'SUBMIT',
-}
+} as const; // need to be a const to restrict action type (not to be just a string)
 
 export type ReducerActionType = typeof REDUCER_ACTION_TYPE
 
 export type ReducerAction = {
-  type: string,
+  type: keyof ReducerActionType,
   payload?: CartItemType,
 }
 
